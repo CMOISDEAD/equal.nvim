@@ -15,6 +15,27 @@ Neovim plugin for evaluating math expressions using qalc.
 - Floating scratch pad
 - Terse / expanded output modes
 
+## Installation
+
+- Lazy (default options)
+
+```lua
+{
+  "CMOISDEAD/equal.nvim",
+  config = function()
+    require('equal').setup {
+      modes = { "n", "v" },
+      keys = {
+        calc_replace = "<leader>cc", -- 1 + 2 → 3
+        calc_expand = "<leader>cC", -- 1 + 2 → 1 + 2 = 3
+        open_repl = "<leader>cr",
+        toggle_scratch = "<leader>cs",
+      },
+    }
+  end
+}
+```
+
 ## Roadmap
 
 - Multiline evaluation
