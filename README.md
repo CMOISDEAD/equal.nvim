@@ -8,6 +8,10 @@ https://github.com/user-attachments/assets/e4da227f-d296-4f3a-a4bb-b8a0d95b3389
 
 Neovim plugin for evaluating math expressions using qalc.
 
+## Requirements
+
+- [qalc](https://github.com/Qalculate/libqalculate)
+
 ## Features
 
 - Evaluate expressions (normal + visual mode)
@@ -36,8 +40,15 @@ Neovim plugin for evaluating math expressions using qalc.
 }
 ```
 
+## Usage
+
+- `:Equal` Calculate line/visual expressions
+- `:EqualExpanded` Calculate with expanded otput mode
+- `:EqualScratch` Toggle qalc scratch buffer
+- `:EqualRepl` Open qalc repl
+
 ## Roadmap
 
 - Multiline evaluation
-- Unit conversions (cm -> m)
 - UI improvements
+- Real-time values

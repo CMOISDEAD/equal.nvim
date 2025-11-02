@@ -18,6 +18,7 @@ function M.setup(opts)
 
 	M.options = vim.tbl_deep_extend("force", defaults, opts)
 
+	-- keymaps
 	vim.keymap.set(M.options.modes, M.options.keys.calc_replace, function()
 		eval.run_calc(false)
 	end, { silent = true, noremap = true, desc = "Calculate (replace)" })
@@ -39,6 +40,29 @@ function M.setup(opts)
 		window.create_repl,
 		{ silent = true, noremap = true, desc = "Open qalc repl" }
 	)
+
+	-- commands
+	vim.api.nvim_create_user_command("Equal", function()
+		eval.run_calc(false)
+	end, {
+		desc = "Calculate (replace)",
+	})
+
+	vim.api.nvim_create_user_command("EqualExpanded", function()
+		eval.run_calc(true)
+	end, {
+		desc = "Calculate (expanded output)",
+	})
+
+	vim.api.nvim_create_user_command("EqualScratch", function()
+		window.toggle_scratch_window()
+	end, { desc = "Toggle qalc scratch buffer" })
+
+	vim.api.nvim_create_user_command("EqualRepl", function()
+		window.create_repl()
+	end, {
+		desc = "Open qalc repl",
+	})
 end
 
 return M
