@@ -1,67 +1,57 @@
-local eval = require("equal.eval")
-local window = require("equal.window")
+local eval = require 'equal.eval'
+local window = require 'equal.window'
 
 local M = {}
 
 local defaults = {
-	modes = { "n", "v" },
+	modes = { 'n', 'v' },
 	keys = {
-		calc_replace = "<leader>cc", -- 1 + 2 → 3
-		calc_expand = "<leader>cC", -- 1 + 2 → 1 + 2 = 3
-		open_repl = "<leader>cr",
-		toggle_scratch = "<leader>cs",
+		calc_replace = '<leader>cc', -- 1 + 2 → 3
+		calc_expand = '<leader>cC', -- 1 + 2 → 1 + 2 = 3
+		open_repl = '<leader>cr',
+		toggle_scratch = '<leader>cs',
 	},
 }
 
 function M.setup(opts)
 	opts = opts or {}
 
-	M.options = vim.tbl_deep_extend("force", defaults, opts)
+	M.options = vim.tbl_deep_extend('force', defaults, opts)
 
 	-- keymaps
 	vim.keymap.set(M.options.modes, M.options.keys.calc_replace, function()
 		eval.run_calc(false)
-	end, { silent = true, noremap = true, desc = "Calculate (replace)" })
+	end, { silent = true, noremap = true, desc = 'Calculate (replace)' })
 
 	vim.keymap.set(M.options.modes, M.options.keys.calc_expand, function()
 		eval.run_calc(true)
-	end, { silent = true, noremap = true, desc = "Calculate (expanded output)" })
+	end, { silent = true, noremap = true, desc = 'Calculate (expanded output)' })
 
-	vim.keymap.set(
-		{ "n" },
-		M.options.keys.toggle_scratch,
-		window.toggle_scratch_window,
-		{ silent = true, noremap = true, desc = "Toggle qalc scratch buffer" }
-	)
+	vim.keymap.set({ 'n' }, M.options.keys.toggle_scratch, window.toggle_scratch_window, { silent = true, noremap = true, desc = 'Toggle qalc scratch buffer' })
 
-	vim.keymap.set(
-		{ "n" },
-		M.options.keys.open_repl,
-		window.create_repl,
-		{ silent = true, noremap = true, desc = "Open qalc repl" }
-	)
+	vim.keymap.set({ 'n' }, M.options.keys.open_repl, window.create_repl, { silent = true, noremap = true, desc = 'Open qalc repl' })
 
 	-- commands
-	vim.api.nvim_create_user_command("Equal", function()
+	vim.api.nvim_create_user_command('Equal', function()
 		eval.run_calc(false)
 	end, {
-		desc = "Calculate (replace)",
+		desc = 'Calculate (replace)',
 	})
 
-	vim.api.nvim_create_user_command("EqualExpanded", function()
+	vim.api.nvim_create_user_command('EqualExpanded', function()
 		eval.run_calc(true)
 	end, {
-		desc = "Calculate (expanded output)",
+		desc = 'Calculate (expanded output)',
 	})
 
-	vim.api.nvim_create_user_command("EqualScratch", function()
+	vim.api.nvim_create_user_command('EqualScratch', function()
 		window.toggle_scratch_window()
-	end, { desc = "Toggle qalc scratch buffer" })
+	end, { desc = 'Toggle qalc scratch buffer' })
 
-	vim.api.nvim_create_user_command("EqualRepl", function()
+	vim.api.nvim_create_user_command('EqualRepl', function()
 		window.create_repl()
 	end, {
-		desc = "Open qalc repl",
+		desc = 'Open qalc repl',
 	})
 end
 

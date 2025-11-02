@@ -19,8 +19,8 @@ M.create_scratch_window = function()
 	local height = math.floor(ui.height * 0.8)
 
 	local window_opts = {
-		style = "minimal",
-		relative = "editor",
+		style = 'minimal',
+		relative = 'editor',
 		width = width,
 		height = height,
 		row = (ui.height - height) / 2,
@@ -52,8 +52,8 @@ M.create_repl = function()
 	local buf = vim.api.nvim_create_buf(false, true)
 
 	local window_opts = {
-		style = "minimal",
-		relative = "editor",
+		style = 'minimal',
+		relative = 'editor',
 		width = width,
 		height = height,
 		row = (ui.height - height) / 2,
@@ -61,7 +61,7 @@ M.create_repl = function()
 	}
 
 	vim.api.nvim_open_win(buf, true, window_opts)
-	vim.fn.jobstart("qalc", {
+	vim.fn.jobstart('qalc', {
 		term = true,
 	})
 end
