@@ -14,10 +14,12 @@ M.create_scratch_window = function()
 		state.buf = vim.api.nvim_create_buf(false, true)
 	end
 
-	local width, height = 120, 30
 	local ui = vim.api.nvim_list_uis()[1]
+	local width = math.floor(ui.width * 0.8)
+	local height = math.floor(ui.height * 0.8)
 
 	local window_opts = {
+		style = "minimal",
 		relative = "editor",
 		width = width,
 		height = height,
@@ -44,11 +46,13 @@ M.toggle_scratch_window = function()
 end
 
 M.create_repl = function()
-	local width, height = 120, 30
 	local ui = vim.api.nvim_list_uis()[1]
+	local width = math.floor(ui.width * 0.8)
+	local height = math.floor(ui.height * 0.8)
 	local buf = vim.api.nvim_create_buf(false, true)
 
 	local window_opts = {
+		style = "minimal",
 		relative = "editor",
 		width = width,
 		height = height,

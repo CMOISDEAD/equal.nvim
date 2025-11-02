@@ -34,6 +34,7 @@ M.run_calc = function(expanded)
 		return
 	end
 	M.calc_and_replace(text, range, expanded)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "v", false) -- ensure normal mode
 end
 
 return M
